@@ -1,0 +1,3 @@
+describe('\'Object\'',() => {
+array.ggggg
+})

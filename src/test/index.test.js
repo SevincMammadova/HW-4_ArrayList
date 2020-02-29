@@ -1,3 +1,3 @@
 describe('\'Object\'',() => {
-array.ggggg
+array.gggggd
 })

@@ -1,41 +1,126 @@
 describe('ArrayList', () => {
-    describe('ArrayList defined', () => {
-        it('object \'ArrayList\' defined', () => {
+    describe('ArrayList', () => {
+        it('ArrayList defined', () =>{
             assert.isDefined(ArrayList);
         });
     })
 
-    describe('init defined', () => {
-        it('function init defined', () => {
-            assert.isDefined(ArrayList.init);
+    describe('init',() => {
+        it('init defined',() => {
+            assert.isDefined(ArrayList.prototype.init);
+        });
+
+        it('should return result \'Wrong input!\' when !array ==> arr = \'\' ', () => {
+            const arr = '';
+            const expected = 'Wrong input!';
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result \'Wrong input!\' when !array ==> arr = null', () => {
+            const arr = null;
+            const expected = 'Wrong input!';
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result \'Wrong input!\' when !array ==> arr = undefined', () => {
+            const arr = undefined;
+            const expected = 'Wrong input!';
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result = array  when arr = [5, 6, 9]', () => {
+            const arr = [5, 6, 9];
+            const expected = [5, 6, 9];
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result = array  when arr = [5]', () => {
+            const arr = [5];
+            const expected = [5];
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result = array  when arr = [5, 6]', () => {
+            const arr = [5, 6];
+            const expected = [5, 6];
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result = array  when arr = [5,\'5\']', () => {
+            const arr = [5, '5'];
+            const expected = [5, '5'];
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result = array  when arr = []', () => {
+            const arr = [];
+            const expected = [];
+
+            const actual = ArrayList.prototype.init(arr);
+
+            assert.deepEqual(actual, expected);
         });
     })
 
-    describe('addAtEnd', () => {
+    describe('addAtEnd',() => {
         it('addAtEnd defined', () => {
-            assert.isDefined(ArrayList.addAtEnd);
+            assert.isDefined(ArrayList.prototype.addAtEnd);
         });
 
-        it('should be return \'please input a right data!\' when element = null', () => {
+        it('should be return result when element = 1, size = 4', () => {
             const array = [0, 4, 8];
-            const element = null;
-            const expected = 'please input a right data!';
-            ArrayList.init(array);
+            const element = 1;
+            const expected= [0, 4, 8, 1];
+            const expectedSize = 4;
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addAtEnd(element);
+            const actual = ArrayList.prototype.addAtEnd(element);
 
             assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should be return \'please input a right data!\' when element = undefined', () => {
-            const array = [0, 4, 8];
+        it('should be return result when element = null', () => {
+            const array = [];
             const element = null;
-            const expected = 'please input a right data!';
-            ArrayList.init(array);
+            const expectedArr= 'Wrong input!';
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addAtEnd(element);
+            const actual = ArrayList.prototype.addAtEnd(element);
 
-            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual, expectedArr);
+        });
+
+        it('should be return result when element = undefined', () => {
+            const array = [];
+            const element = undefined;
+            const expectedArr= 'Wrong input!';
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.addAtEnd(element);
+
+            assert.deepEqual(actual, expectedArr);
         });
 
         it('should be return result when element = 0, size = 4', () => {
@@ -43,61 +128,9 @@ describe('ArrayList', () => {
             const element = 0;
             const expected= [0, 4, 8, 0];
             const expectedSize = 4;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addAtEnd(element);
-
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should be return result when element = -8, size = 4', () => {
-            const array = [0, 4, 8];
-            const element = -8;
-            const expected= [0, 4, 8, -8];
-            const expectedSize = 4;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addAtEnd(element);
-
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should be return result when element = " ", size = 4', () => {
-            const array = [0, 4, 8];
-            const element = ' ';
-            const expected= [0, 4, 8, ' '];
-            const expectedSize = 4;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addAtEnd(element);
-
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should be return result when element = 2, size = 1', () => {
-            const array = [];
-            const element = 2;
-            const expected= [2];
-            const expectedSize = 1;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addAtEnd(element);
-
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should be return result when element = -8, size = 1', () => {
-            const array = [];
-            const element = -8;
-            const expected= [ -8];
-            const expectedSize = 1;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addAtEnd(element);
+            const actual = ArrayList.prototype.addAtEnd(element);
 
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
@@ -108,515 +141,689 @@ describe('ArrayList', () => {
             const element = [];
             const expected= [0, 4, 8, []];
             const expectedSize = 4;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addAtEnd(element);
+            const actual = ArrayList.prototype.addAtEnd(element);
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should be return result when element = \'Im tired\', size = 4', () => {
+            const array = [0, 4, 8];
+            const element = 'Im tired';
+            const expected= [0, 4, 8, 'Im tired'];
+            const expectedSize = 4;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.addAtEnd(element);
 
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
     })
 
-    describe('removeFromEnd', () => {
+    describe('removeFromEnd',() => {
         it('removeFromEnd defined', () => {
-            assert.isDefined(ArrayList.removeFromEnd)
+            assert.isDefined(ArrayList.prototype.removeFromEnd);
         });
 
-        it('should be return result when array = [null], element = null, size 0', () => {
-            const array = [null];
-            const element = null;
+        it('should return result [4, 6] when arr = [4, 6, 9]',() => {
+            const array = [4, 6, 9];
+            const expected = [4, 6];
+            const expectedSize = 2;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromEnd();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result [4] when arr = [4, 6]',() => {
+            const array = [4, 6];
+            const expected = [4];
+            const expectedSize = 1;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromEnd();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result [] when arr = [4]',() => {
+            const array = [4];
             const expected = [];
             const expectedSize = 0;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromEnd(element);
+            const actual = ArrayList.prototype.removeFromEnd();
+
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should be return result when array = [1, undefined], element = undefined, size 1', () => {
-            const array = [1,undefined];
-            const element = undefined;
-            const expected = [1];
+        it('should return result [4] when arr = [4,[]]',() => {
+            const array = [4,[]];
+            const expected = [4];
             const expectedSize = 1;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromEnd(element);
+            const actual = ArrayList.prototype.removeFromEnd();
+
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should be return result when array = [0, 9, 8], element = 8, size 2', () => {
-            const array = [0, 9, 8];
-            const element = 8;
-            const expected = [0, 9];
-            const expectedSize = 2;
-            ArrayList.init(array);
-
-            const actual = ArrayList.removeFromEnd(element);
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should be return result when array = [0, \' \'], element = \' \', size 1', () => {
-            const array = [0,' '];
-            const element = ' ';
-            const expected = [0];
+        it('should return result [\'hello\'] when arr = [\'hello\',\'friends\']',() => {
+            const array = ['hello', 'friends'];
+            const expected = ['hello'];
             const expectedSize = 1;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromEnd(element);
+            const actual = ArrayList.prototype.removeFromEnd();
+
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
     })
 
     describe('cleanOutArray', () => {
-        it('cleanOutArray', () => {
-            assert.isDefined(ArrayList.cleanOutArray);
+        it('cleanOutArray defined',() => {
+            assert.isDefined(ArrayList.prototype.cleanOutArray);
         });
 
-        it('should return result when array = [9, 5, 5],size = 0', () => {
-            const array = [9, 5, 5];
+        it('should return result when array = [1, 6, 9, 8]', () => {
+            const array = [1, 6, 9, 8];
             const expected = [];
             const expectedSize = 0;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.cleanOutArray();
+            const actual = ArrayList.prototype.cleanOutArray();
+
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [],size = 0', () => {
+        it('should return result when array = [1, 6]', () => {
+            const array = [1, 6];
+            const expected = [];
+            const expectedSize = 0;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.cleanOutArray();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when array = []', () => {
             const array = [];
             const expected = [];
             const expectedSize = 0;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.cleanOutArray();
+            const actual = ArrayList.prototype.cleanOutArray();
+
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [ ],size = 0', () => {
-            const array = [ ];
+        it('should return result when array = [\'Home\', \'sweet\', \'Home\']', () => {
+            const array = ['Home', 'sweet', 'Home'];
             const expected = [];
             const expectedSize = 0;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.cleanOutArray();
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
+            const actual = ArrayList.prototype.cleanOutArray();
 
-        it('should return result when array = [\'phrase\'], size = 0', () => {
-            const array = ['phrase'];
-            const expected = [];
-            const expectedSize = 0;
-            ArrayList.init(array);
-
-            const actual = ArrayList.cleanOutArray();
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(actual.length, expectedSize);
-        });
-
-        it('should return result when array = [\'\'],size = 0', () => {
-            const array = [''];
-            const expected = [];
-            const expectedSize = 0;
-            ArrayList.init(array);
-
-            const actual = ArrayList.cleanOutArray();
             assert.deepEqual(actual, expected);
             assert.deepEqual(actual.length, expectedSize);
         });
     })
 
-    describe('removeFromStart', () => {
+    describe('removeFromStart',() => {
         it('removeFromStart defined', () => {
-            assert.isDefined(ArrayList.removeFromStart);
+            assert.isDefined(ArrayList.prototype.removeFromStart);
         });
 
-        it('should return result when array = [9, 8, 8], element = 9, size = 2', () => {
-            const array = [9, 8, 8];
-            const expected = 9;
-            const expectedSize = 2;
-            ArrayList.init(array);
+        it('should return result when array = [4, 6, 9, 8]',() => {
+            const array = [4, 6, 9, 8];
+            const expected = [6, 9, 8];
+            const expectedSize = 3;
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromStart();
+            const actual = ArrayList.prototype.removeFromStart();
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [1], element = 1, size = 0', () => {
-            const array = [1];
-            const expected = 1;
+        it('should return result when array = [4, 6]',() => {
+            const array = [4, 6];
+            const expected = [6];
+            const expectedSize = 1;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromStart();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+        
+        it('should return result when array = [\'hi\', 6]',() => {
+            const array = ['hi', 6];
+            const expected = [6];
+            const expectedSize = 1;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromStart();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when array = [null, 6]',() => {
+            const array = [null, 6];
+            const expected = [6];
+            const expectedSize = 1;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromStart();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when array = undefined',() => {
+            const array = undefined;
+            const expected = [];
             const expectedSize = 0;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromStart();
+            const actual = ArrayList.prototype.removeFromStart();
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [1, \'ty\', 9], element = 1, size = 2', () => {
-            const array = [1, 'ty', 9];
-            const expected = 1;
-            const expectedSize = 2;
-            ArrayList.init(array);
+        it('should return result when array = null',() => {
+            const array = null;
+            const expected = [];
+            const expectedSize = 0;
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.removeFromStart();
+            const actual = ArrayList.prototype.removeFromStart();
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);
+            assert.deepEqual(actual.length, expectedSize);
         });
-    }) 
+
+        it('should return result when array = [5]',() => {
+            const array = [5];
+            const expected = [];
+            const expectedSize = 0;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.removeFromStart();
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+    })
 
     describe('addFromStart', () => {
         it('addFromStart defined', () => {
-            assert.isDefined(ArrayList.addFromStart);
+            assert.isDefined(ArrayList.prototype.addFromStart);
         });
 
-        it('should return result when element = 9, size = 1', () => {
+        it('should return \' Please input a right data!\' when element = null', () => {
+            const array = [];
+            const element = null;
+            const expected = 'Please input a right data!';
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.addFromStart(element);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return \' Please input a right data!\' when element = undefined', () => {
+            const array = [];
+            const element = undefined;
+            const expected = 'Please input a right data!';
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.addFromStart(element);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result  when element = 4, array = []', () => {
+            const array = [];
+            const element = 4;
+            const expected = [4];
+            const expectedSize = 1;
+            ArrayList.prototype.init(array);
+
+            const actual = ArrayList.prototype.addFromStart(element);
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result  when element = 4, array = [1]', () => {
             const array = [1];
-            const expected = [9, 1];
+            const element = 4;
+            const expected = [4,1];
             const expectedSize = 2;
-            ArrayList.init(array);
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addFromStart(9);
+            const actual = ArrayList.prototype.addFromStart(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when element = [], size = 6', () => {
-            const array = [1, 9, 5, 6, 3];
-            const expected = [[], 1, 9, 5, 6, 3];
-            const expectedSize = 6;
-            ArrayList.init(array);
+        it('should return result  when element = 4, array = [1,6,9]', () => {
+            const array = [1,6,9];
+            const element = 4;
+            const expected = [4,1,6,9];
+            const expectedSize = 4;
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addFromStart([]);
+            const actual = ArrayList.prototype.addFromStart(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when element = null, size = 5', () => {
-            const array = [1, 9, 5, 6, 3];
-            const expected = "Wrong input!";
-            const expectedSize = 5;
-            ArrayList.init(array);
+        it('should return result  when element = \'4\', array = [1,6,9]', () => {
+            const array = [1,6,9];
+            const element = '4';
+            const expected = ['4',1,6,9];
+            const expectedSize = 4;
+            ArrayList.prototype.init(array);
 
-            const actual = ArrayList.addFromStart(null);
+            const actual = ArrayList.prototype.addFromStart(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
-        });
-
-        it('should return result when element = undefined, size = 5', () => {
-            const array = [1, 9, 5, 6, 3];
-            const expected = "Wrong input!";
-            const expectedSize = 5;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addFromStart(undefined);
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
-        });
-
-        it('should return result when element = -1, size = 6', () => {
-            const array = [1, 9, 5, 6, 3];
-            const expected = [-1, 1, 9, 5, 6, 3];
-            const expectedSize = 6;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addFromStart(-1);
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
-        });
-
-        it('should return result when element = 1, size = 3', () => {
-            const array = [1, 9];
-            const expected = [1, 1, 9];
-            const expectedSize = 3;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addFromStart(1);
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
-        });
-
-        it('should return result when element = 0, size = 3', () => {
-            const array = [1, 9];
-            const expected = [0, 1, 9];
-            const expectedSize = 3;
-            ArrayList.init(array);
-
-            const actual = ArrayList.addFromStart(0);
-            assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
     })
 
     describe('reverseArray', () => {
         it('reverseArray defined', () => {
-            assert.isDefined(ArrayList.reverseArray);
+            assert.isDefined(ArrayList.prototype.reverseArray);
         });
 
-        it('should return result when array = [0, 2, 3]', () => {
-            const array = [0, 2, 3];
-            const expected = [3, 2, 0];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when arr undefined', () => {
+            const arr = undefined;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when array = [-1, 2, 3]', () => {
-            const array = [-1, 2, 3];
-            const expected = [3, 2, -1];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when arr = null', () => {
+            const arr = null;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when array = [2]', () => {
-            const array = [2];
-            const expected = [2];
+        it('should return result when arr = []', () => {
+            const arr = [];
+            const expected = [];
+            const expectedSize = 0;
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.reverseArray(arr);
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when arr = [5]', () => {
+            const arr = [5];
+            const expected = [5];
             const expectedSize = 1;
-            ArrayList.init(array);
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [[], 2, 3]', () => {
-            const array = [[], 2, 3];
-            const expected = [3, 2, []];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when arr = [\'hello\']', () => {
+            const arr = ['hello'];
+            const expected = ['hello'];
+            const expectedSize = 1;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [[2], 2, 3]', () => {
-            const array = [[2], 2, 3];
-            const expected = [3, 2, [2]];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when arr = [4, 6]', () => {
+            const arr = [4, 6];
+            const expected = [6, 4];
+            const expectedSize = 2;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
         });
 
-        it('should return result when array = [\'f\', \'k\', \'u\']', () => {
-            const array = ['f', 'k', 'u'];
-            const expected = ['u', 'k', 'f'];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when arr = [0]', () => {
+            const arr = [0];
+            const expected = [0];
+            const expectedSize = 1;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.reverseArray();
+            const actual = ArrayList.prototype.reverseArray(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when arr = [4, 6, 9, 12, \'cat\', null]', () => {
+            const arr = [4, 6, 9, 12, 'cat', null];
+            const expected = [null, 'cat', 12, 9, 6, 4];
+            const expectedSize = 6;
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.reverseArray(arr);
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
+        });
+
+        it('should return result when arr = [4, [5,6]]', () => {
+            const arr = [4, [5, 6]];
+            const expected = [[5, 6], 4];
+            const expectedSize = 2;
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.reverseArray(arr);
+
+            assert.deepEqual(actual, expected);
+            assert.deepEqual(actual.length, expectedSize);
         });
     })
 
-    describe('indexOfArr',() => {
+    describe('indexOfArr', () => {
         it('indexOfArr defined', () => {
-            assert.isDefined(ArrayList.indexOfArr);
+            assert.isDefined(ArrayList.prototype.indexOfArr);
         });
 
-        it('should return result \'Wrong input!\'  when element = null', () => {
-            const array = [0, 2, 3];
-            const expected = 'Wrong input!';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when element = null', () => {
+            const arr = [4,6];
+            const element = null;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr();
+            const actual = ArrayList.prototype.indexOfArr(null);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result \'Wrong input!\'  when element = undefined', () => {
-            const array = [0, 2, 3];
-            const expected = 'Wrong input!';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when element = undefined', () => {
+            const arr = [4,6];
+            const element = undefined;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr();
+            const actual = ArrayList.prototype.indexOfArr(null);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when element = 10', () => {
-            const array = [10, 2, 3];
+        it('should return result when element = 4, arr = [4,6]', () => {
+            const arr = [4,6];
+            const element = 4;
             const expected = 0;
-            const expectedSize = 3;
-            ArrayList.init(array);
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr(10);
+            const actual = ArrayList.prototype.indexOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when element = 0', () => {
-            const array = [10, 2, 3];
-            const expected = -1;
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 0, arr = [4,6]', () => {
+            const arr = [4,6];
+            const element = 0;
+            const expected = '-1';
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr(0);
+            const actual = ArrayList.prototype.indexOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when element = -1', () => {
-            const array = [10, 2, 3];
-            const expected = -1;
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 4, arr = [4,6,4]', () => {
+            const arr = [4,6,4];
+            const element = 4;
+            const expected = 0;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr(-1);
+            const actual = ArrayList.prototype.indexOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when element = -1', () => {
-            const array = [10, -1, 3];
-            const expected = 1;
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 4, arr = [\'four\', 5, 6, 4]', () => {
+            const arr = ['four', 5, 6, 4];
+            const element = 4;
+            const expected = 3;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr(-1);
+            const actual = ArrayList.prototype.indexOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result when element = []', () => {
-            const array = [0, 2, 3];
-            const expected = -1;
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 4, arr = [5,6,9]', () => {
+            const arr = [5, 6, 9];
+            const element = 4;
+            const expected = '-1';
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.indexOfArr([]);
+            const actual = ArrayList.prototype.indexOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+        });
+
+        it('should return result when element = 4, arr = []', () => {
+            const arr = [];
+            const element = 4;
+            const expected = '-1';
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.indexOfArr(element);
+
+            assert.deepEqual(actual, expected);
         });
     })
 
     describe('includeOfArr', () => {
         it('includeOfArr defined', () => {
-            assert.isDefined(ArrayList.includeOfArr);
+            assert.isDefined(ArrayList.prototype.includeOfArr);
         });
 
-        it('should return result false  when element = null', () => {
-            const array = [0, 2, 3];
-            const expected = 'false';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when element = null', () => {
+            const arr = [4,6];
+            const element = null;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr();
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result false when element = undefined', () => {
-            const array = [0, 2, 3];
-            const expected = 'false';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when element = undefined', () => {
+            const arr = [4,6];
+            const element = undefined;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr();
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result true when element = 2', () => {
-            const array = [0, 2, 3];
-            const expected = 'true';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 0', () => {
+            const arr = [4,6,0];
+            const element = 0;
+            const expected = true;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr(2);
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result true when element = 0', () => {
-            const array = [0, 2, 3];
-            const expected = 'true';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 5, arr = [4, 6, 0, 5]', () => {
+            const arr = [4, 6, 0, 5];
+            const element = 5;
+            const expected = true;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr(0);
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result false when element = \'\'', () => {
-            const array = [0, 2, 3];
-            const expected = 'false';
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result when element = 5, arr = [4, 6, 0]', () => {
+            const arr = [4, 6, 0];
+            const element = 5;
+            const expected = false;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr('');
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
         });
 
-        it('should return result true when element = \'\'', () => {
-            const array = [0, 2, 3, ''];
-            const expected = 'true';
-            const expectedSize = 4;
-            ArrayList.init(array);
+        it('should return result when element = 5, arr = []', () => {
+            const arr = [];
+            const element = 5;
+            const expected = false;
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.includeOfArr('');
+            const actual = ArrayList.prototype.includeOfArr(element);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize); 
+        });
+
+        it('should return result when element = 5, arr = [4]', () => {
+            const arr = [4];
+            const element = 5;
+            const expected = false;
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.includeOfArr(element);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result when element = \'4\', arr = [4, 6, 0, \'4\']', () => {
+            const arr = [4, 6, 0, '4'];
+            const element = '4';
+            const expected = true;
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.includeOfArr(element);
+
+            assert.deepEqual(actual, expected);
         });
     })
 
     describe('arrayToString', () => {
-        it('arrayToString defined', () => {
-            assert.isDefined(ArrayList.arrayToString);
+        it('arrayTostring defined', () => {
+            assert.isDefined(ArrayList.prototype.arrayToString);
         });
 
-        it('should return result when array = [1, 3, 6]', () => {
-            const array = [1, 3, 6];
-            const expected = ['1,3,6'];
-            const expectedSize = 3;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when arr = null', () => {
+            const arr = null;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.arrayToString(array);
+            const actual = ArrayList.prototype.arrayToString(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);  
         });
 
-        it('should return result when array = [6]', () => {
-            const array = [6];
-            const expected = ['6'];
-            const expectedSize = 1;
-            ArrayList.init(array);
+        it('should return result \'Wrong input!\' when arr = undefined', () => {
+            const arr = undefined;
+            const expected = "Wrong input!";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.arrayToString(array);
+            const actual = ArrayList.prototype.arrayToString(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);  
         });
 
-        it('should return result when array = [6,\'o\']', () => {
-            const array = [6,'o'];
-            const expected = ['6,o'];
-            const expectedSize = 2;
-            ArrayList.init(array);
+        it('should return result  when arr = []', () => {
+            const arr = [];
+            const expected = "";
+            ArrayList.prototype.init(arr);
 
-            const actual = ArrayList.arrayToString(array);
+            const actual = ArrayList.prototype.arrayToString(arr);
+
             assert.deepEqual(actual, expected);
-            assert.deepEqual(ArrayList.array.length, expectedSize);  
+        });
+
+        it('should return result  when arr = [0]', () => {
+            const arr = [0];
+            const expected = "0";
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.arrayToString(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result  when arr = [1, 2]', () => {
+            const arr = [1, 2];
+            const expected = "1,2";
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.arrayToString(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result  when arr = [1, 2, 3]', () => {
+            const arr = [1, 2, 3];
+            const expected = "1,2,3";
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.arrayToString(arr);
+
+            assert.deepEqual(actual, expected);
+        });
+
+        it('should return result  when arr = [\'cat\', \'and\', \'dog\']', () => {
+            const arr = ['cat', 'and', 'dog'];
+            const expected = "cat,and,dog";
+            ArrayList.prototype.init(arr);
+
+            const actual = ArrayList.prototype.arrayToString(arr);
+
+            assert.deepEqual(actual, expected);
         });
     })
 })

@@ -1,120 +1,128 @@
-let ArrayList = {
-    array: [],
-    size: 0,
-    addAtEnd: function(element) {
-        if(!element && element !== 0) {
-            return "please input a right data!";
-        }
+function ArrayList(array) {
+    this.array = [];
+    this.size = 0;
+}
 
-        let arr = ArrayList.array;
-        arr[arr.length] = element;
-    },
-    init: function (arr) {
-        ArrayList.array = arr;
-        ArrayList.size = arr.length;
-    },
+ArrayList.prototype.init = function(arr) {
+    if(!arr) {
+        return "Wrong input!";
+    };
+    
+    this.array = arr;
+    this.size = arr.length;
 
-    removeFromEnd: function() {
-        let removeArray = ArrayList.array;
-        ArrayList.size = removeArray.length;
-        removeArray.length = [removeArray.length - 1];
+    return arr;
+}
+
+ArrayList.prototype.addAtEnd = function(element) {
+    if (!element && element !== 0) {
+        return 'Wrong input!';
+    }
+
+    const arr = this.array;
+
+    arr[arr.length] = element;
+    this.size = arr.length;
+
+    return arr;
+};
+
+ArrayList.prototype.removeFromEnd = function() {
+    const arr = this.array;
+
+    arr.length = [arr.length - 1];
+    this.size = arr.length;
+
+    return this.array;
+}
+
+ArrayList.prototype.cleanOutArray = function() {
+    let arr = this.array;
+
+    arr.length = 0;
+    this.size = 0;
+
+    return arr;
+}
+
+ArrayList.prototype.removeFromStart = function() {
+    const arr = this.array;
+    const array = [];
+
+    for (i = 1; i < arr.length; i++) {
+        array[i - 1] = arr[i];
+    }
+
+    this.array = array;
+    this.size -= 1;
+    
+    return array;
+}
+
+ArrayList.prototype.addFromStart = function(element) {
+    if (!element && element !== 0) return 'Please input a right data!';
+
+    const array = this.array;
+    const arr = [element];
+
+    for (i = 0; i < array.length; i++) {
+        arr[i+1] = array[i];
+    }
+    this.array = arr;
+    this.size += 1;
+
+    return arr;
+}
+
+ArrayList.prototype.reverseArray = function(array) {
+    if (!array) return "Wrong input!";
+
+    const myArray = this.array;
+    const arr = [];
+
+    for (i = myArray.length - 1; i >= 0; i--) {
+        arr[arr.length] = myArray[i];
+    }
+
+    this.array = arr; //не получилось использовать способ с инициализацией на месте, который отметил Муса при проверке дз
+    this.size = arr.length;
+
+    return this.array;
+}
+
+ArrayList.prototype.indexOfArr = function(element) {
+    if(!element && element !== 0) return 'Wrong input!';
+
+    const myArray = this.array;
+
+    for (i = 0; i <= myArray.length; i++) {
+        if (element === myArray[i]) {
+            
+            return i;
+        };
         
-        return removeArray;
-    },
+        this.size = myArray.length
+    }
 
-    cleanOutArray: function() {
-        let array2 = ArrayList.array;
-        array2.length = 0;
-        ArrayList.size = array2.length;
+    return '-1'; 
+}
 
-        return array2;  
-    },
+ArrayList.prototype.includeOfArr = function(element) {
+    if (!element && element !== 0) return "Wrong input!";
 
-    removeFromStart: function() {
-        const arrayShift = ArrayList.array;
-        const arr = [];
+    const myArr = this.array;
 
-        for (let i = 1; i < arrayShift.length; i++) {
-            arr[i - 1] = arrayShift[i];
-        };
-        ArrayList.array = arr;
-        ArrayList.size -= 1;
+    for (i = 0; i <= myArr.length; i++) {
+        if (element === myArr[i]) return true;
+    }
 
-        return arrayShift[0];
-    },
+    return false;
+}
 
-    addFromStart: function(element) {
-        if (!element && element !== 0) {
-            return "Wrong input!";
-        };
+ArrayList.prototype.arrayToString = function (myArr) {
+    if (!myArr) return 'Wrong input!';
 
-        let arrayUnshift = ArrayList.array;
-        ArrayList.size = arrayUnshift.length;
-        let arr = [element];
+    const arr = this.array;
 
-        for (i = 0; i < arrayUnshift.length; i++) {
-            arr[i + 1] = arrayUnshift[i];
-        };
-        ArrayList.array = arr;
-        ArrayList.size += 1;
-        
-        return arr;
-    },
-
-    reverseArray: function(array) {
-        let arrayReverse = ArrayList.array;
-        let arr = [];
-
-        for (let i = arrayReverse.length - 1; i >= 0; i--) {
-           arr[arr.length] = arrayReverse[i];
-
-        }
-        ArrayList.array = arr;
-        ArrayList.size = arrayReverse.length;
-        
-        return arr;
-    },
-
-    indexOfArr: function(index) {
-        if (!index && index !== 0) {
-            return "Wrong input!"
-        };
-
-        let arrayIndex = ArrayList.array;
-        ArrayList.size = arrayIndex.length;
-
-        for (i = 0; i < arrayIndex.length; i++) {
-            if (index === arrayIndex[i]) {
-                return i;
-            };
-        };
-
-        return -1;
-    },
-
-    includeOfArr: function(element) {
-        let arrayInclude = ArrayList.array;
-        ArrayList.size = arrayInclude.length;
-
-        for (i = 0; i < arrayInclude.length; i++) {
-            if (element === arrayInclude[i]) {
-                
-                return 'true';
-            } 
-        };
-
-        return 'false';
-    },
-
-    arrayToString: function(arr) {
-        if (typeof arr !== 'object') {
-            return "Wrong input!";
-        };
-        let arrString = ArrayList.array;
-        ArrayList.size = arrString.length;
-
-        return ['' + arrString];
-    },
-}  
-
- 
+    return '' + arr;
+}

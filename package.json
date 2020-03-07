@@ -1,0 +1,19 @@
+{
+  "name": "hw-4_arraylist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SevincMammadova/HW-4_ArrayList.git"
+  },
+  "author": "Mammadova Sevinc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SevincMammadova/HW-4_ArrayList/issues"
+  },
+  "homepage": "https://github.com/SevincMammadova/HW-4_ArrayList#readme"
+}
